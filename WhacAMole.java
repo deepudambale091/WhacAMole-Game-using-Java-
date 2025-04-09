@@ -5,8 +5,7 @@ import java.awt.*;
  
  public class WhacAMole {
      int boardWidth = 600;
-     int boardHeight = 650; //50 for the text panel on top
- 
+     int boardHeight = 650; 
  	JFrame frame = new JFrame("Mario: Whac A Mole");
      JLabel textLabel = new JLabel();
  	JPanel textPanel = new JPanel();
@@ -25,7 +24,7 @@ import java.awt.*;
      int score = 0;
  
      WhacAMole() {
-         // frame.setVisible(true);
+        
  		frame.setSize(boardWidth, boardHeight);
          frame.setLocationRelativeTo(null);
          frame.setResizable(false);
@@ -42,10 +41,10 @@ import java.awt.*;
          frame.add(textPanel, BorderLayout.NORTH);
  
  		boardPanel.setLayout(new GridLayout(3, 3));
-         // boardPanel.setBackground(Color.black);
+        
          frame.add(boardPanel);
  
-         // plantIcon = new ImageIcon(getClass().getResource("./piranha.png"));
+         
          Image plantImg = new ImageIcon(getClass().getResource("./piranha.png")).getImage();
          plantIcon = new ImageIcon(plantImg.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH));
  
@@ -57,8 +56,7 @@ import java.awt.*;
              board[i] = tile;
              boardPanel.add(tile);
              tile.setFocusable(false);
-             // tile.setIcon(plantIcon);
- 
+            
              tile.addActionListener(new ActionListener() {
                  public void actionPerformed(ActionEvent e) {
                      JButton tile = (JButton) e.getSource();
@@ -80,20 +78,19 @@ import java.awt.*;
  
          setMoleTimer = new Timer(1000, new ActionListener() {
              public void actionPerformed(ActionEvent e) {
-                 //remove icon from current tile
+                
                  if (currMoleTile != null) {
                      currMoleTile.setIcon(null);
                      currMoleTile = null;
                  }
  
-                 //randomly select another tile
+                 
                  int num = random.nextInt(9); //0-8
                  JButton tile = board[num];
  
-                 //if tile is occupied by plant, skip tile for this turn
+                
                  if (currPlantTile == tile) return;
  
-                 //set tile to mole
                  currMoleTile = tile;
                  currMoleTile.setIcon(moleIcon);
              }
@@ -101,20 +98,20 @@ import java.awt.*;
  
          setPlantTimer = new Timer(1500, new ActionListener() {
              public void actionPerformed(ActionEvent e) {
-                 //remove icon from current tile
+                 
                  if (currPlantTile != null) {
                      currPlantTile.setIcon(null);
                      currPlantTile = null;
                  }
  
-                 //randomly select another tile
-                 int num = random.nextInt(9); //0-8
+                
+                 int num = random.nextInt(9);
                  JButton tile = board[num];
  
-                 //if tile is occupied by mole, skip tile for this turn
+                 
                  if (currMoleTile == tile) return;
  
-                 //set tile to mole
+                 
                  currPlantTile = tile;
                  currPlantTile.setIcon(plantIcon);
              }
@@ -127,10 +124,4 @@ import java.awt.*;
  }
  
  
- /*
-  * Homework
-  * - Add Button on the bottom to restart game
-  * - Randomize starting player (hint: use java.util.random)
-  * - Keep track of score and display it on the bottom using
-  * -
-  */
+ 
